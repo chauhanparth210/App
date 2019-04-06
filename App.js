@@ -1,0 +1,68 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
+
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome';
+   
+
+
+
+class basicapp extends Component {
+
+  state={
+    lock:true,
+  }
+
+  alertMessage = () =>{
+    if(this.state.lock){
+      fetch(Link+AIO-Key,{
+        method:"POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+        body:JSON.stringify({value:"ON"})
+      })
+      alert("Door Opened")
+    }else{
+      fetch(Link+AIO-Key,{
+        method:"POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+        body:JSON.stringify({value:"OFF"})
+      })
+      alert("Door Locked")
+    }
+    this.setState({lock:!this.state.lock})
+  }
+
+   render() {
+
+    let lock = this.state.lock ? <Icon name="lock"  size={200}/> : <Icon name="unlock" size={200} />
+
+      return (
+        <View>
+         <TouchableOpacity onPress={this.alertMessage}  style={styles.container}>
+          {lock}
+        </TouchableOpacity>
+      </View>
+      )
+   }
+}
+export default basicapp
+
+var styles = StyleSheet.create({
+  container: {
+    padding: 10,
+    marginTop: 200,
+    alignItems: 'center',
+ }
+})

@@ -9,8 +9,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-   
-
+import {DATA_STRING} from 'react-native-dotenv'
 
 
 class basicapp extends Component {
@@ -21,23 +20,23 @@ class basicapp extends Component {
 
   alertMessage = () =>{
     if(this.state.lock){
-      fetch(Link+AIO-Key,{
+      fetch(DATA_STRING,{
         method:"POST",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
-        body:JSON.stringify({value:"ON"})
+        body:JSON.stringify({value:"OPEN"})
       })
       alert("Door Opened")
     }else{
-      fetch(Link+AIO-Key,{
+      fetch(DATA_STRING,{
         method:"POST",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
-        body:JSON.stringify({value:"OFF"})
+        body:JSON.stringify({value:"CLOSE"})
       })
       alert("Door Locked")
     }
